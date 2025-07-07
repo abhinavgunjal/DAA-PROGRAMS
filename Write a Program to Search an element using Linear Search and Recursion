@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+#define MAX 100
+
+void read1(int arr[], int *n) {
+    int i;
+    printf("Enter n value : ");
+    scanf("%d", n);
+
+    printf("Enter %d elements : ", *n);
+    for (i = 0; i < *n; i++) {
+        scanf("%d", &arr[i]);
+    }
+}
+
+int linearSearch(int arr[], int size, int key, int index) {
+    if (index >= size) {
+        return -1; // Not found
+    }
+    if (arr[index] == key) {
+        return index; // Found
+    }
+    return linearSearch(arr, size, key, index + 1); // Recurse
+}
+
+int main() {
+    int arr[MAX], n, key, result;
+
+    read1(arr, &n);
+
+    printf("Enter a key element : ");
+    scanf("%d", &key);
+
+    result = linearSearch(arr, n, key, 0);
+
+    if (result == -1) {
+        printf("The key element %d is not found\n", key);
+    } else {
+        printf("The key element %d is found at position : %d\n", key, result);
+    }
+
+    return 0;
+}
